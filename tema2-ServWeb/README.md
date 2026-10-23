@@ -6,6 +6,7 @@ Práctica de despliegue de una aplicación Flask detrás de Nginx, con
 Docker Compose y HTTPS mediante Let's Encrypt.
 
 -   **Dominio:** `despliegueayc.duckdns.org`
+-   **IP Pública AWS:**100.53.115.163
 -   **Proxy inverso:** Nginx
 -   **Aplicación:** Flask en el puerto interno `5000`
 -   **Contenedores:** `ut2-nginx` y `ut2-flask`
@@ -31,8 +32,6 @@ Estructura esperada según la configuración trabajada:
 └── README.md
 ```
 
-No publiques `privkey.pem` ni otros secretos en un repositorio público.
-
 ## 3. Requisitos
 
 -   Ubuntu, Docker y Docker Compose.
@@ -43,8 +42,7 @@ No publiques `privkey.pem` ni otros secretos en un repositorio público.
 
 ## 4. Scripts y comandos de administración
 
-Estos son los comandos utilizados para administrar el proyecto; no se
-presupone que existan scripts `.sh` independientes.
+Estos son los comandos utilizados:
 
 ### Entrar al directorio
 

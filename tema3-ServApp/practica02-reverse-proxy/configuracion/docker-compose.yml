@@ -1,0 +1,17 @@
+services:
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80" //exponer el puerto 80 del contenedor al puerto 80 del host
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro 
+    networks:
+      - proxy-net //conecta Nginx a la red compartida con Tomcat (proxy-net)
+    restart: unless-stopped
+
+networks:
+  proxy-net:
+    external: true
+    name: proxy-net

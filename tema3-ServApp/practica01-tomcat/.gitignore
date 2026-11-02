@@ -1,9 +1,0 @@
-# Archivos generados por Maven
-**/target/
-
-# Archivos de configuración de Visual Studio Code
-.vscode/
-
-# Archivos temporales
-*.log
-*.tmp

@@ -1,0 +1,29 @@
+services:
+
+  app:
+    build:
+      context: ..
+      dockerfile: configuracion/Dockerfile
+
+    container_name: flask_gunicorn # ejecuta flask con gunicorn
+
+    ports:
+      - "127.0.0.1:8000:8000"
+
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:stable
+
+    container_name: nginx_flask #recibe peticiones http y las redirige a gunicorn
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+    depends_on:
+      - app
+
+    restart: unless-stopped

@@ -1,0 +1,22 @@
+[Unit]
+Description=Servicio Gunicorn para la aplicacion Flask
+After=network.target
+
+[Service]
+User=ana
+Group=ana
+
+WorkingDirectory=/mnt/c/Users/jvill/OneDrive/Desktop/DAW2-DESP-AnaYepes/tema3-ServApp/practica03-flask-gunicorn
+
+Environment="PATH=/home/ana/venvs/practica03/bin"
+
+ExecStart=/home/ana/venvs/practica03/bin/gunicorn \
+    --workers 2 \
+    --bind 127.0.0.1:8001 \
+    aplicacion.app:app
+
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

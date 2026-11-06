@@ -14,5 +14,6 @@ systemctl start docker
 usermod -aG docker ubuntu
 
 mkdir -p /opt/practica04
+chmod 755 /opt/practica04
 
 

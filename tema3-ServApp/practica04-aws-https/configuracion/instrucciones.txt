@@ -1,0 +1,26 @@
+
+EXPLICACIÓN DEL SCRIPT USER-DATA
+
+1. apt update:
+Actualiza la lista de paquetes disponibles en Ubuntu.
+
+2. docker.io:
+Instala Docker, para crear y ejecutar contenedores.
+
+3. git:
+Instala Git para gestionar repositorios y código fuente.
+
+4. curl:
+Instala una herramienta para realizar peticiones HTTP.
+
+5. systemctl enable docker:
+Configura Docker para que arranque automáticamente.
+
+6. systemctl start docker:
+Inicia el servicio Docker.
+
+7. usermod -aG docker ubuntu:
+Añade el usuario ubuntu al grupo docker.
+
+8. mkdir -p /opt/practica04:
+Crea el directorio donde se almacenará la aplicación.

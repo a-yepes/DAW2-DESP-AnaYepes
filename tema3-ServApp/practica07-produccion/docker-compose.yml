@@ -12,8 +12,11 @@ services:
       MARIADB_DATABASE: timeflies
       MARIADB_USER: timeflies              # usuario propio para la app (no usamos root)
       MARIADB_PASSWORD: ${DB_PASSWORD}
+      TZ: Europe/Madrid                    # hora española para NOW() y las fechas
     volumes:
       - timeflies_data:/var/lib/mysql     # los datos sobreviven aunque se borre el contenedor
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/datos.sql:/docker-entrypoint-initdb.d/02-datos.sql:ro
     networks:
       - timeflies_net
 
@@ -27,6 +30,7 @@ services:
       DB_USER: timeflies
       DB_PASSWORD: ${DB_PASSWORD}
       SECRET_KEY: ${SECRET_KEY}
+      TZ: Europe/Madrid
     depends_on:
       - mariadb
     networks:

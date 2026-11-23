@@ -317,14 +317,3 @@ practica07-produccion/
 | `NameError` y vista que devolvía `None` | Faltaban `import` y la sangría de un `return` quedó desplazada al pegar el código | Revisar los `import` de cada archivo y la indentación (en Python la sangría define los bloques) |
 
 ---
-
-
-He desplegado una aplicación propia en un servidor de producción real, aplicando el flujo completo: desarrollo y
-pruebas en local con Docker, control de versiones con Git, transferencia segura por SSH/SCP, despliegue programado
-por cron y publicación con HTTPS mediante un proxy inverso. La práctica me ha servido para entender la separación entre
-servidor web y servidor de aplicaciones, la importancia de los permisos en un servidor compartido y por qué los datos
-deben vivir en volúmenes y no dentro de los contenedores.
-
-El desarrollo está registrado en commits pequeños, uno por funcionalidad o tarea:
-
-![Historial de commits](capturas/16-github-commits.png)

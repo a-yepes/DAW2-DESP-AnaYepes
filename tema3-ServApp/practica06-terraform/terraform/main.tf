@@ -1,3 +1,4 @@
+
 terraform {
   required_providers {
     aws = {
@@ -11,18 +12,16 @@ provider "aws" {
   region = var.aws_region
 }
 
-
 resource "aws_instance" "servidor" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  key_name               = "practica04"
+  key_name               = var.key_name
   vpc_security_group_ids = [aws_security_group.servidor_sg.id]
 
   tags = {
     Name = "practica06-terraform"
   }
 }
-
 
 resource "aws_security_group" "servidor_sg" {
   name        = "practica06-security-group"

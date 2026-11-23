@@ -85,8 +85,6 @@ whoami          # -> anayepes
 id              # comprobar que pertenezco al grupo daw
 ```
 
-![Conexión SSH](capturas/01-ssh-conexion.png)
-
 ### Tarea 2. Directorio de trabajo
 
 ```bash
@@ -94,9 +92,6 @@ cd /opt/alumnos/anayepes
 pwd
 ls -la
 ```
-
-![Directorio Trabajo](capturas/02-directorio-trabajo.png)
-
 ### Tarea 3. Transferir el proyecto al VPS
 
 Desde Git Bash en mi PC, en la carpeta del repositorio, copio el proyecto con `scp` (copia segura por SSH):
@@ -109,7 +104,6 @@ ssh anayepes@62.171.130.23 "chmod -R u+rwX,g+rwX /opt/alumnos/anayepes/practica0
 El `chmod` corrige los permisos que `scp` copia desde Windows.
 El archivo `.env` con las contraseñas también se copia: el `docker compose` del servidor lo necesita, aunque no está en GitHub.
 
-![Transferencia Proyecto](capturas/03-transferencia-proyecto.png)
 
 ### Tarea 4. Configurar `docker-compose.yml`
 
@@ -125,7 +119,6 @@ Decisiones para convivir con los demás alumnos en el mismo VPS:
 | Volumen `timeflies_data` | Los datos de MariaDB persisten aunque se recreen los contenedores |
 | `TZ: Europe/Madrid` | Hora española para las fechas de apertura |
 
-![Docker Compose Config](capturas/04-docker-compose-yml.png)
 
 ### Tarea 5. Publicación de la aplicación
 
@@ -138,7 +131,6 @@ curl -I http://localhost:8002          # HTTP/1.1 200 OK
 curl -s http://localhost:8002/salud    # {"app":"TimeFlies","estado":"ok","mariadb":"11...."}
 ```
 
-![Aplicación funcionando HTTPS](capturas/05-aplicacion-funcionando-https.png)
 
 ### Tarea 6. Nginx Proxy Manager
 
@@ -153,7 +145,6 @@ por el profesor. Solo he comprobado que el subdominio funciona.
    Tras registrarme, crear una cápsula pública y abrirla desde la aplicación, la portada muestra **4 cápsulas abiertas**
    y la nueva carta aparece la primera en el muro. El dato se ha guardado en MariaDB y se lee de ella:
 
-![Cambio guardado en la BBDD](capturas/06-aplicacion-funcionando-https.png)
 
 ---
 
@@ -210,8 +201,6 @@ Dos tablas relacionadas por una **clave foránea** (cada cápsula pertenece a un
 `database/schema.sql` crea las tablas y `database/datos.sql` inserta datos de ejemplo. MariaDB los ejecuta
 automáticamente la primera vez que arranca con el volumen vacío (`/docker-entrypoint-initdb.d/`).
 
-![Tablas de la base de datos](capturas/08-bbdd-tablas.png)
-
 
 ### 5.4 Seguridad
 
@@ -238,9 +227,6 @@ cp .env.example .env            # y rellenar las contraseñas
 docker compose up -d --build
 # abrir http://localhost:8002
 ```
-
-![Docker en local](capturas/07-docker-local.png)
-
 
 
 ## 6. Actualizar la aplicación en producción

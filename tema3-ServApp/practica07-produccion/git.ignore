@@ -1,0 +1,6 @@
+# Secretos (contraseñas y claves de API): NUNCA se suben a GitHub
+.env
+
+# Archivos que genera Python automáticamente al ejecutarse
+__pycache__/
+*.pyc

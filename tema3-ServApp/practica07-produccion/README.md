@@ -140,7 +140,7 @@ por el profesor. Solo he comprobado que el subdominio funciona.
 ### Tarea 7. Verificación final en el navegador
 
 1. **El candado HTTPS está activo y el certificado es válido**, expedido por Let's Encrypt:
-2. **La aplicación carga correctamente** (captura 05).
+2. **La aplicación carga correctamente** 
 3. **La aplicación conecta con MariaDB y guarda los cambios:** en la captura 05 la portada muestra 3 cápsulas abiertas.
    Tras registrarme, crear una cápsula pública y abrirla desde la aplicación, la portada muestra **4 cápsulas abiertas**
    y la nueva carta aparece la primera en el muro. El dato se ha guardado en MariaDB y se lee de ella:
@@ -273,7 +273,7 @@ los contenedores y la red, pero **no los volúmenes**. Al volver a levantar, el 
 volumen y encuentra los datos intactos. Como el volumen no está vacío, tampoco vuelve a ejecutar `schema.sql` ni
 `datos.sql`. Solo se perderían con `docker compose down -v` (que también borra los volúmenes) o con `docker volume rm`.
 Lo he comprobado en la práctica: en local uso `down -v` precisamente para reiniciar la base de datos, y en producción los
-datos sobreviven a cada redespliegue del cron (captura 15).
+datos sobreviven a cada redespliegue del cron.
 
 ---
 

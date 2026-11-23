@@ -43,7 +43,7 @@ muestra los datos en MariaDB (Modelo).
 
 ## 3. Arquitectura
 
-![Arquitectura](docs/arquitectura-pract07.png)
+![Arquitectura](docs/arquitectura-pract07.jpg)
 
 **Recorrido de una petición:**
 

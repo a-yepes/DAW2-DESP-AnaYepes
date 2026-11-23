@@ -1,4 +1,4 @@
-from db import consultar, consultar_uno
+from db import consultar, consultar_uno, ejecutar
 
 # Emociones disponibles: clave que se guarda en la BBDD -> (icono, nombre visible)
 EMOCIONES = {
@@ -29,4 +29,31 @@ def contadores():
                   COALESCE(SUM(abierta = 0), 0) AS selladas,
                   COALESCE(SUM(abierta = 1), 0) AS abiertas
            FROM capsulas"""
+    )
+
+
+def es_fecha_futura(fecha):
+    """Pregunta a MariaDB si la fecha es posterior a ahora (la hora oficial la da la BBDD)."""
+    fila = consultar_uno("SELECT %s > NOW() AS futura", (fecha,))
+    return fila["futura"] == 1
+
+
+def crear(usuario_id, titulo, mensaje, emocion, fecha_apertura, publica):
+    """Guarda una cápsula nueva (sellada). Devuelve su id."""
+    return ejecutar(
+        """INSERT INTO capsulas (usuario_id, titulo, mensaje, emocion, fecha_apertura, publica)
+           VALUES (%s, %s, %s, %s, %s, %s)""",
+        (usuario_id, titulo, mensaje, emocion, fecha_apertura, publica),
+    )
+
+
+def de_usuario(usuario_id):
+    """Cápsulas de un usuario. 'lista' vale 1 si ya ha llegado su fecha de apertura."""
+    return consultar(
+        """SELECT id, titulo, emocion, fecha_apertura, abierta, abierta_en,
+                  fecha_apertura <= NOW() AS lista
+           FROM capsulas
+           WHERE usuario_id = %s
+           ORDER BY abierta, fecha_apertura""",
+        (usuario_id,),
     )

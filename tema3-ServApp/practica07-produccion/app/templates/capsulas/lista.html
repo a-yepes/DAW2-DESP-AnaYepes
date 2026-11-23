@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Mis cápsulas{% endblock %}
+
+{% block contenido %}
+<div class="titulo-seccion">
+  <h1>Mis cápsulas</h1>
+  <a class="boton" href="{{ url_for('capsulas.nueva') }}">+ Nueva cápsula</a>
+</div>
+
+<div class="rejilla">
+  {% for c in capsulas %}
+    <article class="sobre">
+      <span class="sello">{{ emociones[c.emocion][0] }}</span>
+      <h3>{{ c.titulo }}</h3>
+
+      {% if c.abierta %}
+        <p class="estado">💌 Abierta el {{ c.abierta_en.strftime('%d/%m/%Y') }}</p>
+      {% elif c.lista %}
+        <p class="estado estado-lista">🔓 ¡Ya puedes abrirla!</p>
+      {% else %}
+        <p class="estado">🔒 Se abre el {{ c.fecha_apertura.strftime('%d/%m/%Y %H:%M') }}</p>
+        {# El JavaScript lee data-fecha y escribe aquí la cuenta atrás #}
+        <p class="cuenta-atras" data-fecha="{{ c.fecha_apertura.strftime('%Y-%m-%dT%H:%M:%S') }}"></p>
+      {% endif %}
+    </article>
+  {% else %}
+    <p class="texto-suave">Aún no has enviado nada al futuro. ¡Escribe tu primera cápsula!</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block titulo %}Nueva cápsula{% endblock %}
+
+{% block contenido %}
+<div class="caja-formulario caja-ancha">
+  <h1>Sellar una cápsula</h1>
+  <p class="texto-suave">Lo que escribas quedará bloqueado hasta la fecha de apertura.</p>
+
+  <form method="post" class="formulario">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label>Título
+      <input type="text" name="titulo" required minlength="3" maxlength="120"
+             placeholder="Para mi yo de fin de curso" value="{{ request.form.titulo }}">
+    </label>
+
+    <label>Emoción principal
+      <select name="emocion">
+        {% for clave, (icono, nombre) in emociones.items() %}
+          <option value="{{ clave }}" {% if request.form.emocion == clave %}selected{% endif %}>{{ icono }} {{ nombre }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>Mensaje para el futuro
+      <textarea name="mensaje" rows="8" required minlength="10" maxlength="5000"
+                placeholder="Querida yo del futuro...">{{ request.form.mensaje }}</textarea>
+    </label>
+
+    <label>Fecha y hora de apertura
+      <input type="datetime-local" name="fecha_apertura" id="fecha_apertura" required value="{{ request.form.fecha_apertura }}">
+    </label>
+    <p class="atajos">
+      Atajos:
+      <button type="button" class="chip" data-minutos="3">3 minutos (prueba)</button>
+      <button type="button" class="chip" data-minutos="43200">30 días</button>
+      <button type="button" class="chip" data-minutos="525600">1 año</button>
+    </p>
+
+    <label class="casilla">
+      <input type="checkbox" name="publica" value="1" {% if request.form.publica %}checked{% endif %}>
+      Cuando se abra, compartirla en el muro público
+    </label>
+
+    <button class="boton">🔒 Sellar y enviar al futuro</button>
+  </form>
+</div>
+{% endblock %}

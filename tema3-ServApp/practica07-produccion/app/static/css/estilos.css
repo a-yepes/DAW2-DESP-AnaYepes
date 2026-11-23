@@ -145,3 +145,32 @@ a { color: var(--oro); }
   font: 1rem var(--sans);
 }
 .formulario input:focus, .formulario textarea:focus { outline: 2px solid var(--oro); }
+
+
+/* ---------- 9. Cápsulas (Mis cápsulas y Nueva) ---------- */
+.titulo-seccion { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.sobre {
+  position: relative;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.sobre h3 { margin-top: 0; padding-right: 2.5rem; }
+.estado { color: var(--texto-suave); margin: .3rem 0; }
+.estado-lista { color: var(--oro); font-weight: 700; }
+.cuenta-atras { font-family: var(--serif); font-size: 1.2rem; color: var(--oro); margin: 0; }
+
+.caja-ancha { max-width: 700px; }
+.atajos { margin: -.5rem 0 0; color: var(--texto-suave); display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.chip {
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--texto);
+  border-radius: 999px;
+  padding: .3rem .8rem;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--oro); }
+.casilla { flex-direction: row !important; align-items: center; gap: .6rem !important; }
+input[type="datetime-local"] { color-scheme: dark; }   /* calendario del navegador en modo oscuro */

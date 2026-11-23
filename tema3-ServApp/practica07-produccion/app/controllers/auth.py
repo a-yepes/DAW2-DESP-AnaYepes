@@ -1,8 +1,21 @@
+from functools import wraps
+
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 
 from models import usuario
 
 bp = Blueprint("auth", __name__)
+
+
+def login_requerido(vista):
+    """Decorador: si no hay sesión iniciada, manda al login en vez de mostrar la página."""
+    @wraps(vista)
+    def envoltorio(*args, **kwargs):
+        if "usuario_id" not in session:
+            flash("Inicia sesión para continuar.", "error")
+            return redirect(url_for("auth.login"))
+        return vista(*args, **kwargs)
+    return envoltorio
 
 
 def iniciar_sesion(u):

@@ -22,3 +22,9 @@ def password_correcta(usuario, password):
     if usuario is None or usuario["password_hash"] is None:
         return False
     return check_password_hash(usuario["password_hash"], password)
+
+
+
+def buscar_por_id(usuario_id):
+    """Devuelve el usuario con ese id o None si no existe."""
+    return consultar_uno("SELECT * FROM usuarios WHERE id = %s", (usuario_id,))

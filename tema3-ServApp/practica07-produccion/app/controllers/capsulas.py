@@ -1,9 +1,10 @@
 from datetime import datetime
 
-from flask import Blueprint, abort, flash, redirect, render_template, request, session, url_for
+from flask import Blueprint, abort, flash, make_response, redirect, render_template, request, session, url_for
 
 from controllers.auth import login_requerido
 from models import capsula
+from services.pdf import certificado_capsula
 
 bp = Blueprint("capsulas", __name__)
 
@@ -74,3 +75,19 @@ def borrar(capsula_id):
     capsula.borrar(capsula_id, session["usuario_id"])
     flash("Cápsula eliminada.", "ok")
     return redirect(url_for("capsulas.lista"))
+
+
+@bp.route("/capsulas/<int:capsula_id>/pdf")
+@login_requerido
+def pdf(capsula_id):
+    c = capsula.por_id(capsula_id, session["usuario_id"])
+    if c is None:
+        abort(404)
+
+    contenido = certificado_capsula(c, session["nombre"])
+
+    # Respondemos con el PDF en lugar de con HTML
+    respuesta = make_response(contenido)
+    respuesta.headers["Content-Type"] = "application/pdf"
+    respuesta.headers["Content-Disposition"] = f"inline; filename=timeflies-capsula-{capsula_id}.pdf"
+    return respuesta

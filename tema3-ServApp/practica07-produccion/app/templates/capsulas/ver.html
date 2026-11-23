@@ -37,6 +37,7 @@
   {% endif %}
 
   <div class="acciones">
+    <a class="boton" href="{{ url_for('capsulas.pdf', capsula_id=c.id) }}" target="_blank">📄 Descargar PDF</a>
     <form method="post" action="{{ url_for('capsulas.borrar', capsula_id=c.id) }}"
           onsubmit="return confirm('¿Seguro que quieres eliminar esta cápsula?');">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">

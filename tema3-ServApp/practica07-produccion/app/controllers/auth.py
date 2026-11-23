@@ -11,7 +11,9 @@ def login_requerido(vista):
     """Decorador: si no hay sesión iniciada, manda al login en vez de mostrar la página."""
     @wraps(vista)
     def envoltorio(*args, **kwargs):
-        if "usuario_id" not in session:
+        # Sin sesión, o con una sesión de un usuario que ya no existe en la BBDD -> al login
+        if "usuario_id" not in session or usuario.buscar_por_id(session["usuario_id"]) is None:
+            session.clear()
             flash("Inicia sesión para continuar.", "error")
             return redirect(url_for("auth.login"))
         return vista(*args, **kwargs)

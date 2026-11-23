@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titulo %}Crear cuenta{% endblock %}
+
+{% block contenido %}
+<div class="caja-formulario">
+  <h1>Crear cuenta</h1>
+
+  <form method="post" class="formulario">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <label>Nombre
+      <input type="text" name="nombre" required minlength="2" maxlength="100" value="{{ request.form.nombre }}">
+    </label>
+    <label>Email
+      <input type="email" name="email" required maxlength="150" value="{{ request.form.email }}">
+    </label>
+    <label>Contraseña (mínimo 8 caracteres)
+      <input type="password" name="password" required minlength="8">
+    </label>
+
+    <button class="boton">Crear cuenta</button>
+  </form>
+
+  <p class="texto-suave">¿Ya tienes cuenta? <a href="{{ url_for('auth.login') }}">Inicia sesión</a></p>
+</div>
+{% endblock %}

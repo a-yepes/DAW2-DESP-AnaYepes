@@ -13,6 +13,13 @@
     <a class="logo" href="{{ url_for('main.inicio') }}">⏳ TimeFlies</a>
     <nav class="menu">
       <a href="{{ url_for('main.inicio') }}">Inicio</a>
+      {% if session.usuario_id %}
+        <span class="saludo">Hola, {{ session.nombre }}</span>
+        <a href="{{ url_for('auth.logout') }}">Salir</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}">Entrar</a>
+        <a class="boton boton-pequeno" href="{{ url_for('auth.registro') }}">Crear cuenta</a>
+      {% endif %}
     </nav>
   </header>
 

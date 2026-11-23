@@ -105,3 +105,43 @@ a { color: var(--oro); }
 .aviso { padding: .8rem 1rem; border-radius: 8px; margin-bottom: 1rem; background: var(--tarjeta); border-left: 4px solid var(--oro); }
 .aviso-ok { border-left-color: var(--verde); }
 .aviso-error { border-left-color: var(--rojo); }
+
+
+/* ---------- 7. Botones ---------- */
+.boton {
+  display: inline-block;
+  background: var(--oro);
+  color: #241a05;
+  border: none;
+  border-radius: 999px;            /* bordes totalmente redondeados */
+  padding: .7rem 1.4rem;
+  font: 700 1rem var(--sans);
+  text-decoration: none;
+  cursor: pointer;
+}
+.boton:hover { filter: brightness(1.1); }
+.boton-pequeno { padding: .4rem 1rem; font-size: .9rem; }
+.menu a.boton { color: #241a05; }
+.saludo { font-weight: 700; }
+
+/* ---------- 8. Formularios ---------- */
+.caja-formulario {
+  max-width: 420px;
+  margin: 1rem auto;
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 2rem;
+}
+.caja-formulario h1 { margin-top: 0; }
+.formulario { display: flex; flex-direction: column; gap: 1rem; }
+.formulario label { display: flex; flex-direction: column; gap: .3rem; }
+.formulario input, .formulario textarea, .formulario select {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  padding: .7rem;
+  font: 1rem var(--sans);
+}
+.formulario input:focus, .formulario textarea:focus { outline: 2px solid var(--oro); }

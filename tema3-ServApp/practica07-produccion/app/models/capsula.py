@@ -1,5 +1,15 @@
 from db import consultar, consultar_uno
 
+# Emociones disponibles: clave que se guarda en la BBDD -> (icono, nombre visible)
+EMOCIONES = {
+    "ilusion": ("✨", "Ilusión"),
+    "nostalgia": ("🍂", "Nostalgia"),
+    "gratitud": ("💛", "Gratitud"),
+    "reto": ("🎯", "Reto"),
+    "humor": ("😂", "Humor"),
+    "calma": ("🌊", "Calma"),
+}
+
 
 def muro():
     """Cápsulas abiertas, públicas y no ocultas, con el nombre de su autor."""

@@ -10,7 +10,12 @@ bp = Blueprint("main", __name__)
 @bp.route("/")
 def inicio():
     # 1) pide los datos al MODELO   2) se los pasa a la VISTA
-    return render_template("index.html", muro=capsula.muro(), contadores=capsula.contadores())
+    return render_template(
+        "index.html",
+        muro=capsula.muro(),
+        contadores=capsula.contadores(),
+        emociones=capsula.EMOCIONES,
+    )
 
 
 @bp.route("/salud")

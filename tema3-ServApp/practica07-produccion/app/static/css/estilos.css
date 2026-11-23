@@ -1,0 +1,107 @@
+/* =========================================================
+   TimeFlies · Hoja de estilos
+   Idea visual: cielo nocturno violeta + cartas de papel con sello
+   ========================================================= */
+
+/* ---------- 1. Variables (colores y fuentes en un solo sitio) ---------- */
+:root {
+  --fondo: #14102a;
+  --tarjeta: #241c4f;
+  --borde: #3a2f74;
+  --texto: #ece6ff;
+  --texto-suave: #a99fd0;
+  --oro: #e8b038;
+  --papel: #f8f1e1;
+  --tinta: #2b2140;
+  --rojo: #f0617c;
+  --verde: #5ec4b6;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--texto);
+  background: var(--fondo) radial-gradient(ellipse at top, #2c2163, var(--fondo) 60%) no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;   /* el pie siempre queda abajo */
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--serif); line-height: 1.2; }
+a { color: var(--oro); }
+
+/* ---------- 3. Cabecera y pie ---------- */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 5%;
+  border-bottom: 1px solid var(--borde);
+}
+.logo { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--texto); text-decoration: none; }
+.menu { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.menu a { color: var(--texto-suave); text-decoration: none; }
+.menu a:hover { color: var(--texto); }
+
+.contenedor { width: min(1100px, 90%); margin: 2rem auto; flex: 1; }
+.pie { text-align: center; color: var(--texto-suave); font-size: .85rem; padding: 1.5rem; border-top: 1px solid var(--borde); }
+
+/* ---------- 4. Portada ---------- */
+.portada { max-width: 750px; padding: 2rem 0; }
+.portada h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: .3rem 0 1rem; }
+.portada em { color: var(--oro); font-weight: 400; }
+.antetitulo { color: var(--oro); text-transform: uppercase; letter-spacing: .15em; font-size: .8rem; font-weight: 700; margin: 0; }
+.texto-suave { color: var(--texto-suave); }
+
+.contadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.contador { background: var(--tarjeta); border: 1px solid var(--borde); border-radius: 12px; padding: 1.2rem; color: var(--texto-suave); }
+.numero { display: block; font-family: var(--serif); font-size: 2.4rem; font-weight: 700; color: var(--oro); }
+
+/* ---------- 5. Cartas (muro) ---------- */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.carta {
+  position: relative;
+  background: var(--papel);
+  color: var(--tinta);
+  border-radius: 6px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .35);
+}
+.carta h3 { margin-top: 0; padding-right: 2.5rem; }
+.carta-texto { font-family: var(--serif); font-style: italic; }
+.carta-pie { font-size: .8rem; color: #7a6e94; margin-bottom: 0; }
+.sello {                                   /* "lacre" redondo con el emoji de la emoción */
+  position: absolute;
+  top: -12px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #a8263d;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .4);
+}
+
+/* ---------- 6. Avisos (mensajes flash) ---------- */
+.aviso { padding: .8rem 1rem; border-radius: 8px; margin-bottom: 1rem; background: var(--tarjeta); border-left: 4px solid var(--oro); }
+.aviso-ok { border-left-color: var(--verde); }
+.aviso-error { border-left-color: var(--rojo); }

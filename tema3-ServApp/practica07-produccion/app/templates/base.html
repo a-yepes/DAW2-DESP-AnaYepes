@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}TimeFlies{% endblock %} · Cápsulas del tiempo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+  <header class="cabecera">
+    <a class="logo" href="{{ url_for('main.inicio') }}">⏳ TimeFlies</a>
+    <nav class="menu">
+      <a href="{{ url_for('main.inicio') }}">Inicio</a>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    {# Mensajes flash: avisos de una sola vez ("Cápsula creada", "Contraseña incorrecta"...) #}
+    {% for categoria, mensaje in get_flashed_messages(with_categories=true) %}
+      <div class="aviso aviso-{{ categoria }}">{{ mensaje }}</div>
+    {% endfor %}
+
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <footer class="pie">
+    TimeFlies · Práctica 07 DAW · Flask + MariaDB + Nginx en Docker
+  </footer>
+</body>
+</html>

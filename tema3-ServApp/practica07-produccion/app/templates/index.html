@@ -1,26 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>TimeFlies</title>
-</head>
-<body>
-  <h1>⏳ TimeFlies</h1>
-  <p>
-    Cápsulas enviadas: <strong>{{ contadores.total }}</strong> ·
-    selladas: <strong>{{ contadores.selladas }}</strong> ·
-    abiertas: <strong>{{ contadores.abiertas }}</strong>
-  </p>
+{% extends "base.html" %}
 
-  <h2>Muro de cápsulas abiertas</h2>
+{% block contenido %}
+<section class="portada">
+  <p class="antetitulo">Correo con destino al futuro</p>
+  <h1>Escribe hoy.<br><em>Léelo cuando ya seas otra persona.</em></h1>
+  <p class="texto-suave">
+    TimeFlies guarda tus cartas en una cápsula sellada. Nadie puede leerlas
+    hasta la fecha que elijas. Cuando llegue el día, ábrela y descubre qué pensabas.
+  </p>
+</section>
+
+<section class="contadores">
+  <div class="contador"><span class="numero">{{ contadores.total }}</span> cápsulas enviadas</div>
+  <div class="contador"><span class="numero">{{ contadores.selladas }}</span> esperando su fecha 🔒</div>
+  <div class="contador"><span class="numero">{{ contadores.abiertas }}</span> ya abiertas 💌</div>
+</section>
+
+<h2>Muro de cápsulas abiertas</h2>
+<div class="rejilla">
   {% for c in muro %}
-    <article>
+    <article class="carta">
+      <span class="sello">{{ emociones[c.emocion][0] }}</span>
       <h3>{{ c.titulo }}</h3>
-      <p>{{ c.mensaje }}</p>
-      <small>{{ c.autor }} · abierta el {{ c.abierta_en.strftime('%d/%m/%Y') }}</small>
+      <p class="carta-texto">{{ c.mensaje }}</p>
+      <p class="carta-pie">{{ c.autor }} · abierta el {{ c.abierta_en.strftime('%d/%m/%Y') }}</p>
     </article>
   {% else %}
-    <p>Todavía no se ha abierto ninguna cápsula pública.</p>
+    <p class="texto-suave">Todavía no se ha abierto ninguna cápsula pública.</p>
   {% endfor %}
-</body>
-</html>
+</div>
+{% endblock %}

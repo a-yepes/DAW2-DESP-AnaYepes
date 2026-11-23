@@ -1,13 +1,13 @@
 -- =============================================================
 --  TimeFlies · Datos de ejemplo
 --  Un usuario de demostración SIN contraseña (no puede iniciar sesión):
---  solo sirve para que el muro y las gráficas no salgan vacíos.
+--  solo sirve para que el muro no salga vacío.
 -- =============================================================
 SET NAMES utf8mb4;
 USE timeflies;
 
-INSERT INTO usuarios (id, nombre, email, password_hash, proveedor, creado_en) VALUES
- (1, 'Viajera del tiempo', 'demo@timeflies.local', NULL, 'local', NOW() - INTERVAL 20 DAY);
+INSERT INTO usuarios (id, nombre, email, password_hash, creado_en) VALUES
+ (1, 'Viajera del tiempo', 'demo@timeflies.local', NULL, NOW() - INTERVAL 20 DAY);
 
 -- Cápsulas ya abiertas y públicas (salen en el muro)
 INSERT INTO capsulas (usuario_id, titulo, mensaje, emocion, fecha_apertura, publica, abierta, abierta_en, creado_en) VALUES

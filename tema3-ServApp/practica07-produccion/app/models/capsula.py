@@ -12,12 +12,12 @@ EMOCIONES = {
 
 
 def muro():
-    """Cápsulas abiertas, públicas y no ocultas, con el nombre de su autor."""
+    """Cápsulas abiertas y públicas con el nombre de su autor."""
     return consultar(
         """SELECT c.titulo, c.mensaje, c.emocion, c.abierta_en, u.nombre AS autor
            FROM capsulas c
            JOIN usuarios u ON u.id = c.usuario_id
-           WHERE c.publica = 1 AND c.abierta = 1 AND c.oculta = 0
+           WHERE c.publica = 1 AND c.abierta = 1
            ORDER BY c.abierta_en DESC"""
     )
 

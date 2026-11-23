@@ -23,7 +23,6 @@ def iniciar_sesion(u):
     session.clear()
     session["usuario_id"] = u["id"]
     session["nombre"] = u["nombre"]
-    session["es_admin"] = bool(u["es_admin"])
 
 
 @bp.route("/registro", methods=["GET", "POST"])

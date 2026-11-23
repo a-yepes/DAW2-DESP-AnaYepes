@@ -1,0 +1,52 @@
+# Práctica 07 · TimeFlies · usuario anayepes · puerto asignado 8002
+
+name: anayepes-p07
+
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: anayepes_mariadb      # nombre único en el servidor compartido
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: timeflies
+      MARIADB_USER: timeflies              # usuario propio para la app (no usamos root)
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - timeflies_data:/var/lib/mysql     # los datos sobreviven aunque se borre el contenedor
+    networks:
+      - timeflies_net
+
+  flask:
+    build: ./app
+    container_name: anayepes_flask
+    restart: unless-stopped
+    environment:
+      DB_HOST: mariadb                     # nombre del servicio = nombre en la red interna
+      DB_NAME: timeflies
+      DB_USER: timeflies
+      DB_PASSWORD: ${DB_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+    depends_on:
+      - mariadb
+    networks:
+      - timeflies_net
+
+  nginx:
+    image: nginx:latest
+    container_name: anayepes_nginx
+    restart: unless-stopped
+    ports:
+      - "8002:80"                          # puerto del host asignado : puerto del contenedor
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - flask
+    networks:
+      - timeflies_net
+
+networks:
+  timeflies_net:
+
+volumes:
+  timeflies_data:

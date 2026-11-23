@@ -9,7 +9,8 @@
 
 <div class="rejilla">
   {% for c in capsulas %}
-    <article class="sobre">
+    {# Toda la tarjeta es un enlace a la página de la cápsula #}
+    <a class="sobre" href="{{ url_for('capsulas.ver', capsula_id=c.id) }}">
       <span class="sello">{{ emociones[c.emocion][0] }}</span>
       <h3>{{ c.titulo }}</h3>
 
@@ -22,7 +23,7 @@
         {# El JavaScript lee data-fecha y escribe aquí la cuenta atrás #}
         <p class="cuenta-atras" data-fecha="{{ c.fecha_apertura.strftime('%Y-%m-%dT%H:%M:%S') }}"></p>
       {% endif %}
-    </article>
+    </a>
   {% else %}
     <p class="texto-suave">Aún no has enviado nada al futuro. ¡Escribe tu primera cápsula!</p>
   {% endfor %}

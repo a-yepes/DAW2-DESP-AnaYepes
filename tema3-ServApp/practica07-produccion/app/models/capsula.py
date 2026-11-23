@@ -57,3 +57,27 @@ def de_usuario(usuario_id):
            ORDER BY abierta, fecha_apertura""",
         (usuario_id,),
     )
+
+
+def por_id(capsula_id, usuario_id):
+    """Una cápsula concreta, SOLO si pertenece a ese usuario (si no, devuelve None)."""
+    return consultar_uno(
+        """SELECT *, fecha_apertura <= NOW() AS lista
+           FROM capsulas
+           WHERE id = %s AND usuario_id = %s""",
+        (capsula_id, usuario_id),
+    )
+
+
+def abrir(capsula_id, usuario_id):
+    """Marca la cápsula como abierta. El WHERE impide abrirla antes de su fecha."""
+    ejecutar(
+        """UPDATE capsulas SET abierta = 1, abierta_en = NOW()
+           WHERE id = %s AND usuario_id = %s AND abierta = 0 AND fecha_apertura <= NOW()""",
+        (capsula_id, usuario_id),
+    )
+
+
+def borrar(capsula_id, usuario_id):
+    """Elimina la cápsula (solo si es de ese usuario)."""
+    ejecutar("DELETE FROM capsulas WHERE id = %s AND usuario_id = %s", (capsula_id, usuario_id))

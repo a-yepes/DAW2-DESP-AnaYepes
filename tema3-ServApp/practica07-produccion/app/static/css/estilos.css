@@ -174,3 +174,16 @@ a { color: var(--oro); }
 .chip:hover { border-color: var(--oro); }
 .casilla { flex-direction: row !important; align-items: center; gap: .6rem !important; }
 input[type="datetime-local"] { color-scheme: dark; }   /* calendario del navegador en modo oscuro */
+
+
+/* ---------- 10. Ver una cápsula ---------- */
+a.sobre { color: var(--texto); text-decoration: none; display: block; }
+a.sobre:hover { border-color: var(--oro); }
+
+.carta-grande { max-width: 760px; padding: 2.5rem; }
+.carta-grande h1 { margin-top: 0; padding-right: 3rem; }
+.mensaje-abierto { font-family: var(--serif); font-style: italic; font-size: 1.2rem; white-space: pre-line; }
+.bloqueo { text-align: center; border: 2px dashed #c9bda3; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+.carta-grande .cuenta-atras { color: #a8263d; font-size: 1.8rem; }
+.acciones { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.boton-peligro { background: transparent; color: var(--rojo); border: 2px solid var(--rojo); }

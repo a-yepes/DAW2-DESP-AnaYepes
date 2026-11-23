@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>TimeFlies</title>
+</head>
+<body>
+  <h1>⏳ TimeFlies</h1>
+  <p>
+    Cápsulas enviadas: <strong>{{ contadores.total }}</strong> ·
+    selladas: <strong>{{ contadores.selladas }}</strong> ·
+    abiertas: <strong>{{ contadores.abiertas }}</strong>
+  </p>
+
+  <h2>Muro de cápsulas abiertas</h2>
+  {% for c in muro %}
+    <article>
+      <h3>{{ c.titulo }}</h3>
+      <p>{{ c.mensaje }}</p>
+      <small>{{ c.autor }} · abierta el {{ c.abierta_en.strftime('%d/%m/%Y') }}</small>
+    </article>
+  {% else %}
+    <p>Todavía no se ha abierto ninguna cápsula pública.</p>
+  {% endfor %}
+</body>
+</html>

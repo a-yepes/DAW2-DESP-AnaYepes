@@ -1,10 +1,14 @@
+import os
+
 from flask import Flask
 
-# Creamos la aplicación Flask
+from controllers import main
+
+# Creamos la aplicación
 app = Flask(__name__)
 
+# Clave para firmar las cookies de sesión (viene del .env a través del docker-compose)
+app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
-# Ruta de la portada: cuando alguien visita "/", Flask ejecuta esta función
-@app.route("/")
-def inicio():
-    return "<h1>⏳ TimeFlies</h1><p>Flask funcionando detrás de Nginx.</p>"
+# Registramos los controladores (cada uno aporta sus rutas)
+app.register_blueprint(main.bp)
